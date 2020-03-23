@@ -1,6 +1,18 @@
-// const input= document.getElementById('login_input')
+document.addEventListener('DOMContentLoaded', () => {
 
-// console.log(input);
+    const form = document.getElementById("login_form");
 
 
 
+    // console.log(form);
+
+
+
+
+
+
+
+
+    
+
+});
