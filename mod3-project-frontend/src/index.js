@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     const divLogin = document.getElementById("login");
     const form = document.getElementById("login_form");
-    const div2 = document.getElementById("seed")
-    const submit = document.getElementById("submit_button")
-    const input = document.getElementById("login_input")
-    
+    const div2 = document.getElementById("seed");
+    const submit = document.getElementById("submit_button");
+    const input = document.getElementById("login_input");
+    const greetDiv = document.getElementById("greet");
     console.log(input)
 
 
@@ -26,16 +26,27 @@ document.addEventListener('DOMContentLoaded', () => {
             div2.append(li)
             li.innerText = seed.attributes.name
 
-        })
+        });
     }
 
-    divLogin.addEventListener("submit", function(event){
-            divLogin.remove();
 
-
-    });
       
 
+  
+
+    form.addEventListener('submit', function (e) {
+    
+        //prevent the normal submission of the form
+        e.preventDefault();
+    
+        console.log(input.value);   
+        divLogin.remove();
+        const h1 = document.createElement('h1')
+        h1.innerText = `Hello ${input.value}`
+        greetDiv.append(h1)
+       
+ 
+    });
     
 
 });
