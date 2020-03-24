@@ -1,10 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    const divLogin = document.getElementById("login");
     const form = document.getElementById("login_form");
-<<<<<<< HEAD
     const div2 = document.getElementById("seed")
-
-    console.log(div2)
+    const submit = document.getElementById("submit_button")
+    const input = document.getElementById("login_input")
+    
+    console.log(input)
 
 
 
@@ -18,24 +19,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function renderSeed(seeds){
-        console.log(seeds)
-        seeds.forEach(seed => {
+        // console.log(seeds.data)
+        seeds.data.forEach(seed => {
+            console.log(seed.attributes);
             const li = document.createElement('li')
             div2.append(li)
-            li.innerText = seed.name
+            li.innerText = seed.attributes.name
 
         })
     }
 
+    divLogin.addEventListener("submit", function(event){
+            divLogin.remove();
 
 
+    });
+      
 
     
 
 });
-=======
->>>>>>> c4fcf94bb257bdefc74aba7ef1a0185eeba054d4
 
+
+//     document.getElementById("try").addEventListener("click", function(){ 
+//     document.getElementById("text").innerText = "GeeksforGeeks"; 
+// }); 
 
 
     // console.log(form);
@@ -49,4 +57,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-});
+
