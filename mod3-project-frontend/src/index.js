@@ -1,13 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById("login_form");
-<<<<<<< HEAD
     const div2 = document.getElementById("seed")
 
-    console.log(div2)
-
-
-
+    const allActivitiesUrl = `http://localhost:3000/activities`
+    // console.log(div2)
     // console.log(form);
 
 
@@ -18,26 +15,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
     function renderSeed(seeds){
-        console.log(seeds)
-        seeds.forEach(seed => {
+        console.log(seeds.data)
+        seeds.data.forEach(seed => {
             const li = document.createElement('li')
             div2.append(li)
             li.innerText = seed.name
-
         })
     }
 
-
+    // fetch activities
+    fetch(allActivitiesUrl)
+    .then(resp => resp.json())
+    .then(actData => renderAllActivities(actData))
+    
+    function renderAllActivities(activities) {
+        console.log(activities.data)
+        activities.data.forEach(activity => {
+            const activityNameUl = document.getElementById('activities_ul')
+            const activityNameLi = document.createElement('li')
+            activityNameLi.innerText = activity.attributes.name
+            activityNameUl.append(activityNameLi)
+        })
+    }
+        
 
 
     
 
 });
-=======
->>>>>>> c4fcf94bb257bdefc74aba7ef1a0185eeba054d4
-
-
-
     // console.log(form);
 
 
@@ -49,4 +54,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     
 
-});
