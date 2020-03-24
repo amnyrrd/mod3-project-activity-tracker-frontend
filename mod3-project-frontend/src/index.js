@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const form = document.getElementById("login_form");
+<<<<<<< HEAD
     const div2 = document.getElementById("seed")
 
     console.log(div2)
@@ -32,6 +33,20 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 });
+=======
+>>>>>>> c4fcf94bb257bdefc74aba7ef1a0185eeba054d4
 
 
 
+    // console.log(form);
+
+
+
+
+
+
+
+
+    
+
+});
