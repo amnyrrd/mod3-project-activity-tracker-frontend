@@ -12,15 +12,14 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch(`http://localhost:3000/users`)
     .then(resp => resp.json())
     .then(data => renderSeed(data))
-
     
     function renderSeed(seeds){
-        console.log(seeds.data)
         seeds.data.forEach(seed => {
+            console.log(seed.attributes);
             const li = document.createElement('li')
             div2.append(li)
-            li.innerText = seed.name
-        })
+            li.innerText = seed.attributes.name
+        });
     }
 
     // fetch activities
@@ -29,7 +28,6 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(actData => renderAllActivities(actData))
     
     function renderAllActivities(activities) {
-        console.log(activities.data)
         activities.data.forEach(activity => {
             const activityNameUl = document.getElementById('activities_ul')
             const activityNameLi = document.createElement('li')
