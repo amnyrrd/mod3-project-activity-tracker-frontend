@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const allActivitiesUrl = `http://localhost:3000/activities`
-    const activitiesButton = document.getElementById('activities_button')
+    const activitiesButton = document.getElementsByClassName('activities_button')[0]
 
     // fetch activities
     fetch(allActivitiesUrl)
@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
         activityDiv.innerHTML = activities.data
             .map(activity => renderActivity(activity))
             .join("");
+
+        activityDiv.style.display = "none"
     }
 
     function renderActivity(activity) {
@@ -29,15 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     activitiesButton.addEventListener('click', function(e){
-        showList()
+        showActivitiesDiv()
     })
     
-    function showList(){
-        const list = document.getElementsByClassName('activity_attr')
-        if (list.style.display === "block"){
-            list.style.display = "none";
+    function showActivitiesDiv(){
+        const activitiesDiv = document.getElementById('activities')
+        if (activitiesDiv.style.display === "none"){
+            activitiesDiv.style.display = "block";
         }else{
-            list.style.display = "block";
+            activitiesDiv.style.display = "none";
         }
     }
 
