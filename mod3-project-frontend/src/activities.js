@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const allActivitiesUrl = `http://localhost:3000/activities`
+    const activitiesDiv = document.getElementById("activities")
+    const newActivityButton = document.createElement('button')
     const activitiesButton = document.getElementsByClassName('activities_button')[0]
 
     // fetch activities
@@ -8,13 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(actData => renderAllActivities(actData))
 
     function renderAllActivities(activities) {
-        const activityDiv = document.getElementById("activities")
 
-        activityDiv.innerHTML = activities.data
+        activitiesDiv.innerHTML = activities.data
             .map(activity => renderActivity(activity))
             .join("");
 
-        activityDiv.style.display = "none"
+        activitiesDiv.style.display = "none"
     }
 
     function renderActivity(activity) {
@@ -32,10 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     activitiesButton.addEventListener('click', function(e){
         showActivitiesDiv()
+        newActivityButton.innerText = 'Post a new activity'
+        activitiesDiv.append(newActivityButton)
     })
     
     function showActivitiesDiv(){
-        const activitiesDiv = document.getElementById('activities')
         if (activitiesDiv.style.display === "none"){
             activitiesDiv.style.display = "block";
         }else{
@@ -43,6 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    newActivityButton.addEventListener('click', function(e){
+
+    })
+
+    function showNewActivityForm(){
+
+    }
+    
 });
 
 
