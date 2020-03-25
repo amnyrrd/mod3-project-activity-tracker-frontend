@@ -6,8 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById("login_input");
     const greetDiv = document.getElementById("greet");
     const allActivitiesUrl = `http://localhost:3000/activities`
-    const activityName = document.getElementsByClassName('activity_name')
+    const activityCard = document.getElementsByClassName('activity_card')
     console.log(input)
+    // console.log(div2)
 
     // console.log(form);
 
@@ -17,6 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data => renderSeed(data))
     
     function renderSeed(seeds){
+
+        // console.log(seeds.data)
+
         seeds.data.forEach(seed => {
             console.log(seed.attributes);
             const li = document.createElement('li')
@@ -25,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
     }
-    
+
     // fetch activities
     fetch(allActivitiesUrl)
     .then(resp => resp.json())
@@ -52,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     }
 
-    activityName.addEventListener('click', function(e){
+    activityCard.addEventListener('click', function(e){
         showList()
     })
     
@@ -64,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
             list.style.display = "none";
         }
     }
+        
+
 
 
     form.addEventListener('submit', function (e) {
@@ -84,9 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+
 //     document.getElementById("try").addEventListener("click", function(){ 
 //     document.getElementById("text").innerText = "GeeksforGeeks"; 
 // }); 
+
 
 
     // console.log(form);
@@ -186,4 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     
+
+
+
 
