@@ -5,8 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const submit = document.getElementById("submit_button");
     const input = document.getElementById("login_input");
     const greetDiv = document.getElementById("greet");
-    const allActivitiesUrl = `http://localhost:3000/activities`
-    const activityCard = document.getElementsByClassName('activity_card')
+    console.log(input)
+
+
+
+
+
+
     console.log(input)
     // console.log(div2)
 
@@ -30,45 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // fetch activities
-    fetch(allActivitiesUrl)
-    .then(resp => resp.json())
-    .then(actData => renderAllActivities(actData))
-
-    function renderAllActivities(activities) {
-        const activityDiv = document.getElementById("activities_div")
-
-        activityDiv.innerHTML = activities.data
-            .map(activity => renderActivity(activity))
-            .join("");
-    }
-
-    function renderActivity(activity) {
-        // console.log(activities.data)
-        return `
-            <div class="activity_card">
-                <h3 class="activity_name">${activity.attributes.name}</h3>
-                <div class="activity_attr">
-                    <p>Expected Duration: ${activity.attributes.duration}</p>
-                    <p>Description: ${activity.attributes.description}</p>
-                </div>
-            </div>
-        `
-    }
-
-    activityCard.addEventListener('click', function(e){
-        showList()
-    })
-    
-    function showList(){
-        const list = document.getElementsByClassName('activity_attr')
-        if (list.style.display === "none"){
-            list.style.display = "block";
-        }else{
-            list.style.display = "none";
-        }
-    }
-        
+   
 
 
 
