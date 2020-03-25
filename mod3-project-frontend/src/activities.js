@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const allActivitiesUrl = `http://localhost:3000/activities`
-    const activityCard = document.getElementsByClassName('activity_card')
+    const activitiesButton = document.getElementById('activities_button')
 
     // fetch activities
     fetch(allActivitiesUrl)
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(actData => renderAllActivities(actData))
 
     function renderAllActivities(activities) {
-        const activityDiv = document.getElementById("activities_div")
+        const activityDiv = document.getElementById("activities")
 
         activityDiv.innerHTML = activities.data
             .map(activity => renderActivity(activity))
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // console.log(activities.data)
         return `
             <div class="activity_card">
-                <h3 class="activity_name">${activity.attributes.name}</h3>
+                <h3 id="activity_name">${activity.attributes.name}</h3>
                 <div class="activity_attr">
                     <p>Expected Duration: ${activity.attributes.duration}</p>
                     <p>Description: ${activity.attributes.description}</p>
@@ -28,16 +28,16 @@ document.addEventListener('DOMContentLoaded', () => {
         `
     }
 
-    activityCard.addEventListener('click', function(e){
+    activitiesButton.addEventListener('click', function(e){
         showList()
     })
     
     function showList(){
         const list = document.getElementsByClassName('activity_attr')
-        if (list.style.display === "none"){
-            list.style.display = "block";
-        }else{
+        if (list.style.display === "block"){
             list.style.display = "none";
+        }else{
+            list.style.display = "block";
         }
     }
 
