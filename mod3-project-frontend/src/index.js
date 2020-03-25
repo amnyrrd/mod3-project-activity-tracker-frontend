@@ -19,6 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(form);
 
 
+
+
+
+
+
+
+    
+    form.addEventListener('submit', function (e) {
+    
+        //prevent the normal submission of the form
+        e.preventDefault();
+    
+        const ul = document.createElement('ul')
+        ul.setAttribute('id','users_list' )
+        const h3 = document.createElement('h3')
+        h3.innerText = "Activity Tracker Users"
+        div2.append(h3)
+        div2.append(ul)
+
+       
+
+        
+
+
+
+        
+        
     // fetch the seed data
     fetch(`http://localhost:3000/users`)
     .then(resp => resp.json())
@@ -28,28 +55,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // console.log(seeds.data)
 
+
+
+
         seeds.data.forEach(seed => {
-            console.log(seed.attributes);
             const li = document.createElement('li')
-            div2.append(li)
-            li.innerText = seed.attributes.name
+            li.setAttribute('id', 'user_names')
+            ul.append(li)
+            
+           
+          
+            
+            
+            
+            
+            console.log(seed.attributes);
+            li.innerText = `${seed.attributes.name}`
+            
+            
 
 
         });
     }
 
-
-
-    form.addEventListener('submit', function (e) {
-    
-        //prevent the normal submission of the form
-        e.preventDefault();
-    
+        
+        
+        
+        
+        
+        // Removes login box and button adds custom message
         console.log(input.value);   
         divLogin.remove();
         const h1 = document.createElement('h1')
         h1.innerText = `Hello ${input.value}`
         greetDiv.append(h1)
+
+
+
+
+        // const div = document.createElement('div')
+        // div.setAttribute('class','users')
+
+
+
+
        
  
     });
