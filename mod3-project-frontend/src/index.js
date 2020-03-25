@@ -7,25 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const greetDiv = document.getElementById("greet");
     // console.log(input)
 
-
-
-
-
-
     // console.log(input)
     // console.log(div2)
 
     // console.log(form);
 
-
-
-
-
-
-
-
-
-    
+ 
     form.addEventListener('submit', function (e) {
     
         //prevent the normal submission of the form
@@ -113,6 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
 
 });
+
+})
 
 
 
