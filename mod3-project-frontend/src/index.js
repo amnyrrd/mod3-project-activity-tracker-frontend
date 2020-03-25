@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    
     const divLogin = document.getElementById("login");
     const form = document.getElementById("login_form");
     const div2 = document.getElementById("seed");
@@ -25,45 +26,53 @@ document.addEventListener('DOMContentLoaded', () => {
         div2.append(h3)
         div2.append(ul)
 
+
+        console.log(input.value);   
+        divLogin.remove();
+        const h1 = document.createElement('h1')
+        h1.innerText = `Hello ${input.value}`
+        greetDiv.append(h1)
+
+
        
 
        
-    // fetch the seed data
-    fetch(`http://localhost:3000/users`)
-    .then(resp => resp.json())
-    .then(data => renderSeed(data))
+        // fetch the seed data
+        fetch(`http://localhost:3000/users`)
+        .then(resp => resp.json())
+        .then(data => renderSeed(data))
     
-    function renderSeed(seeds){
+        function renderSeed(seeds){
 
-        // console.log(seeds.data)
-
-
+            // console.log(seeds.data)
 
 
-        seeds.data.forEach(seed => {
 
 
-            // console.log(seed.attributes);
-            const li = document.createElement('li')
-            li.setAttribute('id', 'user_names')
-            ul.append(li)
-            
-           
-          
+            seeds.data.forEach(seed => {
+
+
+                // console.log(seed.attributes);
+                const li = document.createElement('li')
+                li.setAttribute('id', 'user_names')
+                ul.append(li)
+                
             
             
-            
-            
-            console.log(seed.attributes);
-            li.innerText = `${seed.attributes.name}`
-            
-            
+                
+                
+                
+                
+                console.log(seed.attributes);
+                li.innerText = `${seed.attributes.name}`
+                
+                
 
-        });
-    }
+            });
+        }
 
 
-        
+            
         
         
         
@@ -74,32 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    form.addEventListener('submit', function (e) {
-    
-        //prevent the normal submission of the form
-        e.preventDefault();
-    
-        console.log(input.value);   
-        divLogin.remove();
-        const h1 = document.createElement('h1')
-        h1.innerText = `Hello ${input.value}`
-        greetDiv.append(h1)
-
-
-
-
-        // const div = document.createElement('div')
-        // div.setAttribute('class','users')
-
-
-
-
-       
- 
+        
     });
-    
+})
 
-});
 
 })
 
