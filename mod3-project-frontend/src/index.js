@@ -11,21 +11,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(input)
 
 
+    // Users
 
+        // fetch the seed data
+    fetch(`http://localhost:3000/users`)
+    .then(resp => resp.json())
+    .then(data => renderSeed(data))
 
-
-
-    // console.log(input)
-    // console.log(div2)
-
-    // console.log(form);
-
-
-
-
-
-
-
+    
+    
+    function renderSeed(seeds){
+        console.log(seeds)
+    
+    }
+    
 
 
     
@@ -38,9 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const ul = document.createElement('ul')
         ul.setAttribute('id','users_list' )
-        const h3 = document.createElement('h3')
-        // h3.innerText = "Activity Tracker Users"
-        div2.append(h3)
         div2.append(ul)
 
 
@@ -109,8 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
                 usersButton.addEventListener('click', function(e){
                     console.log("Button was clicked")
-                    usersButton.remove()
-                    
+                    // usersButton.remove()
+
+
 
 
                             // fetch the seed data
@@ -118,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         .then(resp => resp.json())
                         .then(data => renderSeed(data))
                         
-
+                        
                         function renderSeed(seeds){
 
 
@@ -126,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             seeds.data.forEach(seed => {
 
 
-
+                                
                                 // console.log(seed.attributes);
                                 const li = document.createElement('li')
                                 li.setAttribute('id', 'user_names')
