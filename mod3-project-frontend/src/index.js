@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(input)
 
 
+
   
 
         // fetch the seed data
@@ -61,6 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
         showUsersDiv()
         console.log("button was clicked")
      })
+
+    // console.log(input)
+    // console.log(div2)
+
+    // console.log(form);
+
+ 
 
     form.addEventListener('submit', function (e) {
     
@@ -161,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 })
+
 
 
 
