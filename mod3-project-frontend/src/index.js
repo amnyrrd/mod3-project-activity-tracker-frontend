@@ -6,7 +6,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const submit = document.getElementById("submit_button");
     const input = document.getElementById("login_input");
     const greetDiv = document.getElementById("greet");
+    const usersButton = document.getElementsByClassName('users_button')[0]
+    const newUsersButton = document.createElement('button')
+    
     // console.log(input)
+
+
+
+  
+
+        // fetch the seed data
+    fetch(`http://localhost:3000/users`)
+    .then(resp => resp.json())
+    .then(data => renderAllSeeds(data))
+
+
+    
+    function renderSeed(seeds){
+        // console.log(seeds.data[0])
+        
+        return `
+            <div class="activity_card">
+                <h3 id="user_name">${seeds.attributes.name}</h3>
+            </div>
+        `
+
+         
+
+    }
+
+
+    /// Problem Here
+    function renderAllSeeds(seeds) {
+        console.log(seeds.data)
+        div2.innerHTML = seeds.data
+            .map(seed => renderSeed(seed))
+            .join("");
+
+        div2.style.display = "none"
+    }
+
+
+
+    
+
+    function showUsersDiv(){
+        if (div2.style.display === "none"){
+            div2.style.display = "block";
+        }else{
+            div2.style.display = "none";
+        }
+    }
+    
+    usersButton.addEventListener('click', function(e){
+        showUsersDiv()
+        console.log("button was clicked")
+     })
 
     // console.log(input)
     // console.log(div2)
@@ -14,19 +69,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // console.log(form);
 
  
+
     form.addEventListener('submit', function (e) {
     
         //prevent the normal submission of the form
         e.preventDefault();
     
+
+        
         const ul = document.createElement('ul')
         ul.setAttribute('id','users_list' )
-        const h3 = document.createElement('h3')
-        h3.innerText = "Activity Tracker Users"
-        div2.append(h3)
         div2.append(ul)
 
 
+
+        // Remove login
         console.log(input.value);   
         divLogin.remove();
         const h1 = document.createElement('h1')
@@ -35,27 +92,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
        
-
+        
        
-        // fetch the seed data
-        fetch(`http://localhost:3000/users`)
-        .then(resp => resp.json())
-        .then(data => renderSeed(data))
+        // // fetch the seed data
+        // fetch(`http://localhost:3000/users`)
+        // .then(resp => resp.json())
+        // .then(data => renderSeed(data))
     
-        function renderSeed(seeds){
-
-            // console.log(seeds.data)
-
-
+        
+        
+        // function renderSeed(seeds){
 
 
-            seeds.data.forEach(seed => {
+        //     seeds.data.forEach(seed => {
 
 
-                // console.log(seed.attributes);
-                const li = document.createElement('li')
-                li.setAttribute('id', 'user_names')
-                ul.append(li)
+        //         // console.log(seed.attributes);
+        //         const li = document.createElement('li')
+        //         li.setAttribute('id', 'user_names')
+        //         ul.append(li)
                 
             
             
@@ -63,28 +118,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 
                 
-                console.log(seed.attributes);
-                li.innerText = `${seed.attributes.name}`
+        //         console.log(seed.attributes);
+        //         li.innerText = `${seed.attributes.name}`
                 
                 
 
-            });
-        }
+        //     });
+        // }
 
 
             
-        
-        
-        
-        
-        // Removes login box and button adds custom message
-
-   
-
-
+               
 
         
+        
+        
+
+
+          
+
+
+                
+                
+
+           
+        
+        
+ 
+
+
+
+
+                        
+                        
+                       
+
+                  
+                        
+
+                    
+
+
+            
+    
     });
+
+
+    // Shows users
+
+
+
 })
 
 

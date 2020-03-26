@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newActivityForm = document.getElementById('activities_form')
     let activityForm;
 
+
+    console.log(activitiesDiv);
     // fetch activities
     fetch(allActivitiesUrl)
     .then(resp => resp.json())
