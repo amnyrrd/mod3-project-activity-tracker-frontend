@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const greetDiv = document.getElementById("greet");
     const usersButton = document.getElementsByClassName('users_button')[0]
     const newUsersButton = document.createElement('button')
+    const newUsersDiv = document.getElementById('users_form')
+    const newUserForm = document.getElementById('activities_form')
+    const allUsersUrl = `http://localhost:3000/users`
     
     // console.log(input)
 
@@ -16,18 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
   
 
         // fetch the seed data
-    fetch(`http://localhost:3000/users`)
+    fetch(allUsersUrl)
     .then(resp => resp.json())
-    .then(data => renderAllSeeds(data))
+    .then(data => renderAllUsers(data))
 
 
     
-    function renderSeed(seeds){
+    function renderUser(users){
         // console.log(seeds.data[0])
         
         return `
-            <div class="activity_card">
-                <h3 id="user_name">${seeds.attributes.name}</h3>
+            <div class="user_card">
+                <h3 id="user_name">${users.attributes.name}</h3>
             </div>
         `
 
@@ -37,18 +40,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     
-    function renderAllSeeds(seeds) {
-        console.log(seeds.data)
-        div2.innerHTML = seeds.data
-            .map(seed => renderSeed(seed))
+    function renderAllUsers(users) {
+        console.log(users.data)
+        div2.innerHTML = users.data
+            .map(user => renderUser(user))
             .join("");
 
         div2.style.display = "none"
     }
 
-
-
-    
+    // Shows users, adds user button
+    usersButton.addEventListener('click', function(e){
+        showUsersDiv()
+        console.log("button was clicked")
+        newUsersButton.innerText = 'Post a new user'
+        newUsersButton.className = 'new_user_button'
+        div2.append(newUsersButton)
+    })
 
     function showUsersDiv(){
         if (div2.style.display === "none"){
@@ -57,20 +65,85 @@ document.addEventListener('DOMContentLoaded', () => {
             div2.style.display = "none";
         }
     }
+
+    // shows post User form
+    newUsersButton.addEventListener('click', function(e){
+        e.preventDefault()
+        showNewUserForm()
+    })
+
+    function showNewUserForm(){
+        div2.style.display = "none"
+        newUsersDiv.innerHTML = ` 
+        <form class="user_form" id="user_form" style="">
+        <h3>Upload a new user</h3>
+        <input type="text" name="name" value="" placeholder="Enter your first name" class="input-text">
+        <input type="submit" name="submit" value="Submit User" id="submit_new_user">
+      </form>
+      `
+      userForm = document.getElementById('user_form')
+      userFormListener()
+    }
+
     
-
-    // Shows users,adds user button
-    usersButton.addEventListener('click', function(e){
-        showUsersDiv()
-        console.log("button was clicked")
-        newUsersButton.innerText = 'Post a new user'
-        newUsersButton.className = 'new_user_button'
-        div2.append(newUsersButton)
-     })
+    function toggleUserForm(){
+        if (newUserForm.style.display === "none"){
+            newUserForm.style.display = "block"
+        } else {
+            newUserForm.style.display = "none"
+        }
+    }
 
 
 
- 
+
+/******  This function below is not being read for some reason ********/
+
+    // post user
+    function postUser(user_data) {
+        console.log(user_data)
+        fetch(allUsersUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({
+                "name": user_data.name.value,
+                "age": user_data.age.value,
+                "gender": user_data.gender.value,
+                "user_id": 1
+            })
+        })
+        .then(resp => resp.json())
+        .then(userObj => {
+            renderNewUser(userObj)
+        })
+    }
+
+
+    function renderNewUser(user){
+        console.log(user)
+        div2.innerHTML += `
+        <div class="user_card">
+            <h3 id="user_name">${user.data.attributes.name}</h3>
+            <div class="user_attr">
+                <p>Expected Duration: ${user.data.attributes.age}</p>
+            </div>
+        </div>
+    `
+    }
+
+
+    function userFormListener(){
+        userForm.addEventListener('submit', function(e){
+            e.preventDefault()
+            // postLocationToActivity(e.target)
+            toggleUserForm()
+            showUsersDiv()
+        })
+    }
+
 
     form.addEventListener('submit', function (e) {
     
