@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const activitiesButton = document.getElementsByClassName('activities_button')[0]
     const newActivityDiv = document.getElementById('activities_form')
     const newActivityForm = document.getElementById('activities_form')
-    // const activityCard = document.getElementsByClassName('activity_card')
+    const activityCard = document.getElementById('activity_card')
     let deleteActivityButton = document.getElementById('delete_button')
     let activityForm;
 
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function deleteActivity(){
-        
+        activityCard.parentNode.removeChild()
     }
 });
 
