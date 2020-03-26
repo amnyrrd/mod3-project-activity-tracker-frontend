@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newActivityButton = document.createElement('button')
     const activitiesButton = document.getElementsByClassName('activities_button')[0]
 
+
+    console.log(activitiesDiv);
     // fetch activities
     fetch(allActivitiesUrl)
     .then(resp => resp.json())

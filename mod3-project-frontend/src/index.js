@@ -7,27 +7,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const input = document.getElementById("login_input");
     const greetDiv = document.getElementById("greet");
     const usersButton = document.getElementsByClassName('users_button')[0]
+    const newUsersButton = document.createElement('button')
     
     // console.log(input)
 
 
-    // Users
+  
 
         // fetch the seed data
     fetch(`http://localhost:3000/users`)
     .then(resp => resp.json())
-    .then(data => renderSeed(data))
+    .then(data => renderAllSeeds(data))
 
-    
+
     
     function renderSeed(seeds){
-        console.log(seeds)
+        // console.log(seeds.data[0])
+        
+        return `
+            <div class="activity_card">
+                <h3 id="user_name">${seeds.attributes.name}</h3>
+            </div>
+        `
+
+         
+
+    }
+
+
+    /// Problem Here
+    function renderAllSeeds(seeds) {
+        console.log(seeds.data)
+        div2.innerHTML = seeds.data
+            .map(seed => renderSeed(seed))
+            .join("");
+
+        div2.style.display = "none"
+    }
+
+
+
     
+
+    function showUsersDiv(){
+        if (div2.style.display === "none"){
+            div2.style.display = "block";
+        }else{
+            div2.style.display = "none";
+        }
     }
     
+    usersButton.addEventListener('click', function(e){
+        showUsersDiv()
+        console.log("button was clicked")
+     })
 
-
-    
     form.addEventListener('submit', function (e) {
     
         //prevent the normal submission of the form
@@ -102,44 +136,22 @@ document.addEventListener('DOMContentLoaded', () => {
            
         
         
-        
-                usersButton.addEventListener('click', function(e){
-                    console.log("Button was clicked")
-                    // usersButton.remove()
+ 
 
 
 
 
-                            // fetch the seed data
-                        fetch(`http://localhost:3000/users`)
-                        .then(resp => resp.json())
-                        .then(data => renderSeed(data))
                         
                         
-                        function renderSeed(seeds){
+                       
 
+                  
+                        
 
-                            
-                            seeds.data.forEach(seed => {
-
-
-                                
-                                // console.log(seed.attributes);
-                                const li = document.createElement('li')
-                                li.setAttribute('id', 'user_names')
-                                ul.append(li)
-
-                                
-                                console.log(seed.attributes);
-                                li.innerText = `${seed.attributes.name}`
                     
 
-                            });   
 
-                        }
-
-
-                })
+            
     
     });
 
