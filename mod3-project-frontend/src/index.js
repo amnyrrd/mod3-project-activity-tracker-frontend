@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    /// Problem Here
+    
     function renderAllSeeds(seeds) {
         console.log(seeds.data)
         div2.innerHTML = seeds.data
@@ -58,15 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
+
+    // Shows users,adds user button
     usersButton.addEventListener('click', function(e){
         showUsersDiv()
         console.log("button was clicked")
+        newUsersButton.innerText = 'Post a new user'
+        newUsersButton.className = 'new_user_button'
+        div2.append(newUsersButton)
      })
 
-    // console.log(input)
-    // console.log(div2)
 
-    // console.log(form);
 
  
 
@@ -92,40 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
        
-        
-       
-        // // fetch the seed data
-        // fetch(`http://localhost:3000/users`)
-        // .then(resp => resp.json())
-        // .then(data => renderSeed(data))
-    
-        
-        
-        // function renderSeed(seeds){
-
-
-        //     seeds.data.forEach(seed => {
-
-
-        //         // console.log(seed.attributes);
-        //         const li = document.createElement('li')
-        //         li.setAttribute('id', 'user_names')
-        //         ul.append(li)
-                
-            
-            
-                
-                
-                
-                
-        //         console.log(seed.attributes);
-        //         li.innerText = `${seed.attributes.name}`
-                
-                
-
-        //     });
-        // }
-
 
             
                
