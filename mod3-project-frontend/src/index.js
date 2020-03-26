@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const submit = document.getElementById("submit_button");
     const input = document.getElementById("login_input");
     const greetDiv = document.getElementById("greet");
+    const usersButton = document.getElementsByClassName('users_button')[0]
+    
     // console.log(input)
 
 
@@ -32,14 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
         //prevent the normal submission of the form
         e.preventDefault();
     
+
+        
         const ul = document.createElement('ul')
         ul.setAttribute('id','users_list' )
         const h3 = document.createElement('h3')
-        h3.innerText = "Activity Tracker Users"
+        // h3.innerText = "Activity Tracker Users"
         div2.append(h3)
         div2.append(ul)
 
 
+
+        // Remove login
         console.log(input.value);   
         divLogin.remove();
         const h1 = document.createElement('h1')
@@ -48,27 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
        
-
+        
        
-        // fetch the seed data
-        fetch(`http://localhost:3000/users`)
-        .then(resp => resp.json())
-        .then(data => renderSeed(data))
+        // // fetch the seed data
+        // fetch(`http://localhost:3000/users`)
+        // .then(resp => resp.json())
+        // .then(data => renderSeed(data))
     
-        function renderSeed(seeds){
-
-            // console.log(seeds.data)
-
-
+        
+        
+        // function renderSeed(seeds){
 
 
-            seeds.data.forEach(seed => {
+        //     seeds.data.forEach(seed => {
 
 
-                // console.log(seed.attributes);
-                const li = document.createElement('li')
-                li.setAttribute('id', 'user_names')
-                ul.append(li)
+        //         // console.log(seed.attributes);
+        //         const li = document.createElement('li')
+        //         li.setAttribute('id', 'user_names')
+        //         ul.append(li)
                 
             
             
@@ -76,28 +80,77 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 
                 
-                console.log(seed.attributes);
-                li.innerText = `${seed.attributes.name}`
+        //         console.log(seed.attributes);
+        //         li.innerText = `${seed.attributes.name}`
                 
                 
 
-            });
-        }
+        //     });
+        // }
 
 
             
-        
-        
-        
-        
-        // Removes login box and button adds custom message
-
-   
-
-
+               
 
         
+        
+        
+
+
+          
+
+
+                
+                
+
+           
+        
+        
+        
+                usersButton.addEventListener('click', function(e){
+                    console.log("Button was clicked")
+                    usersButton.remove()
+                    
+
+
+                            // fetch the seed data
+                        fetch(`http://localhost:3000/users`)
+                        .then(resp => resp.json())
+                        .then(data => renderSeed(data))
+                        
+
+                        function renderSeed(seeds){
+
+
+                            
+                            seeds.data.forEach(seed => {
+
+
+
+                                // console.log(seed.attributes);
+                                const li = document.createElement('li')
+                                li.setAttribute('id', 'user_names')
+                                ul.append(li)
+
+                                
+                                console.log(seed.attributes);
+                                li.innerText = `${seed.attributes.name}`
+                    
+
+                            });   
+
+                        }
+
+
+                })
+    
     });
+
+
+    // Shows users
+
+
+
 })
 
 
