@@ -32,8 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderActivity(activity) {
-        console.log(activity)
-        console.log(typeof(activity.id))
         return `
             <div class="activity_card" id="activity${activity.id}">
                 <h3 id="activity_name">${activity.attributes.name}</h3>
@@ -41,27 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>Expected Duration: ${activity.attributes.duration}</p>
                     <p>Description: ${activity.attributes.description}</p>
                 </div>
-                <button onclick="handleDeleteActivity()"  name="delete_button" id=${activity.id}>Delete this activity</button>
+                <button onclick="handleDeleteActivity(event)"  name="delete_button" id=${activity.id}>Delete this activity</button>
             </div>
         `
-
-        // deleteActivityButton = document.getElementById(`button${activity.id}`)
-        // handleDeleteActivity(document.getElementById(`button${activity.id}`))
-        // document.getElementById(activity.id).addEventListener('click', function(e){
-        //     console.log(e.target)
-        // })
     }
-
-//     function removeElement(activities, activity_card){
-//         if (activity_card == activities) {
-//              alert("The parent div cannot be removed.");
-//         }
-//         else if (document.getElementById(activities)) {     
-//              var child = document.getElementById(activity_card);
-//              var parent = document.getElementById(activities);
-//              parent.removeChild(child);
-//         }
-//    }
    
 
     // shows hidden div of all activities and post activity button
@@ -167,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Description: ${activity.data.attributes.description}</p>
             </div>
         </div>
-        <button onclick="handleDeleteActivity()" name="delete_button" id=${activity.id}>Delete this activity</button>
+        <button onclick="handleDeleteActivity(event)" name="delete_button" id=${activity.id}>Delete this activity</button>
         `
     }
     function activityFormListener(){
@@ -180,10 +161,24 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-let activityCard = document.getElementByID('activity_card')
+// let activityCard = document.getElementsByClassName('activity_card')
 
-function handleDeleteActivity(){
-    
-    console.log(activityCard)
+function handleDeleteActivity(event){
+    let activityId = event.target.id
+    event.target.parentElement.remove()
+    deleteActivity(activityId)
+    // activitiesDiv.remove()
+    // console.log(activityCard)
     // activityCard.remove()
+}
+
+function deleteActivity(activityId) {
+    // console.log(activity_data, location)
+    fetch(`${allActivitiesUrl}/${activityId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+    })
 }
