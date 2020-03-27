@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="user_card">
                 <h3 id="user_name">${users.attributes.name}</h3>
             </div>
+            <button onClick = "deleteUser()" name="user_button" id="user_button">Delete this user</button>
         `
 
          
@@ -137,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p>Gender: ${user.data.attributes.gender}</p>
             </div>
         </div>
-        <button onClick = "deleteUser() name="user_button" id="user_button">Delete this user</button>
+        <button onClick = "deleteUser()" name="user_button" id="user_button">Delete this user</button>
     `
     }
 

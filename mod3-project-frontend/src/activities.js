@@ -1,14 +1,22 @@
+const allActivitiesUrl = `http://localhost:3000/activities`
+const allLocationsUrl = `http://localhost:3000/locations`
+const activitiesDiv = document.getElementById("activities")
+const newActivityButton = document.createElement('button')
+const activitiesButton = document.getElementsByClassName('activities_button')[0]
+const newActivityDiv = document.getElementById('activities_form')
+const newActivityForm = document.getElementById('activities_form')
+let activityForm;
+
 document.addEventListener('DOMContentLoaded', () => {
-    const allActivitiesUrl = `http://localhost:3000/activities`
-    const allLocationsUrl = `http://localhost:3000/locations`
-    const activitiesDiv = document.getElementById("activities")
-    const newActivityButton = document.createElement('button')
-    const activitiesButton = document.getElementsByClassName('activities_button')[0]
-    const newActivityDiv = document.getElementById('activities_form')
-    const newActivityForm = document.getElementById('activities_form')
-    const activityCard = document.getElementById('activity_card')
-    let deleteActivityButton = document.getElementsByClassName('delete_button')
-    let activityForm;
+
+    // const allActivitiesUrl = `http://localhost:3000/activities`
+    // const allLocationsUrl = `http://localhost:3000/locations`
+    // const activitiesDiv = document.getElementById("activities")
+    // const newActivityButton = document.createElement('button')
+    // const activitiesButton = document.getElementsByClassName('activities_button')[0]
+    // const newActivityDiv = document.getElementById('activities_form')
+    // const newActivityForm = document.getElementById('activities_form')
+    // let activityForm;
 
     // fetch activities
     fetch(allActivitiesUrl)
@@ -16,25 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(actData => renderAllActivities(actData))
 
     function renderAllActivities(activities) {
-        activitiesDiv.innerHTML = activities.data
-            .map(activity => renderActivity(activity))
+        activitiesDiv.innerHTML = activities.data.map(activity => { return renderActivity(activity)  
+        })
             .join("");
 
         activitiesDiv.style.display = "none"
     }
 
     function renderActivity(activity) {
+        console.log(activity)
+        console.log(typeof(activity.id))
         return `
-            <div class="activity_card" id="activity_card">
+            <div class="activity_card" id="activity${activity.id}">
                 <h3 id="activity_name">${activity.attributes.name}</h3>
                 <div class="activity_attr">
                     <p>Expected Duration: ${activity.attributes.duration}</p>
                     <p>Description: ${activity.attributes.description}</p>
                 </div>
+                <button onclick="handleDeleteActivity()"  name="delete_button" id=${activity.id}>Delete this activity</button>
             </div>
-            <button onClick = "deleteActivity() name="delete_button" id="delete_button">Delete this activity</button>
         `
+
+        // deleteActivityButton = document.getElementById(`button${activity.id}`)
+        // handleDeleteActivity(document.getElementById(`button${activity.id}`))
+        // document.getElementById(activity.id).addEventListener('click', function(e){
+        //     console.log(e.target)
+        // })
     }
+
+//     function removeElement(activities, activity_card){
+//         if (activity_card == activities) {
+//              alert("The parent div cannot be removed.");
+//         }
+//         else if (document.getElementById(activities)) {     
+//              var child = document.getElementById(activity_card);
+//              var parent = document.getElementById(activities);
+//              parent.removeChild(child);
+//         }
+//    }
+   
 
     // shows hidden div of all activities and post activity button
     activitiesButton.addEventListener('click', function(e){
@@ -130,17 +158,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderNewActivity(activity, location){
-        //<p>User ID:${activity.data.attributes.user_id}</p>
-        //<p>Location: ${location.data.attributes.name}</p>
+        console.log(activity.data.attributes)
         activitiesDiv.innerHTML += `
-        <div class="activity_card" id="activity_card>
+        <div class="activity_card" id="activity"+${activity.id}>
             <h3 id="activity_name">${activity.data.attributes.name}</h3>
             <div class="activity_attr">
                 <p>Expected Duration: ${activity.data.attributes.duration}</p>
                 <p>Description: ${activity.data.attributes.description}</p>
             </div>
         </div>
-        <button onClick = "deleteActivity() name="delete_button" id="delete_button">Delete this activity</button>
+        <button onclick="handleDeleteActivity()" name="delete_button" id=${activity.id}>Delete this activity</button>
         `
     }
     function activityFormListener(){
@@ -151,13 +178,12 @@ document.addEventListener('DOMContentLoaded', () => {
             showActivitiesDiv()
         })
     }
-
-    function deleteActivity(){
-        activitiesDiv.parentNode.removeChild(activityCard)
-    }
-    console.log(deleteActivityButton)
-    // deleteActivityButton.addEventListener('click', function(e){
-    //     deleteActivity()
-    // })
 });
 
+let activityCard = document.getElementByID('activity_card')
+
+function handleDeleteActivity(){
+    
+    console.log(activityCard)
+    // activityCard.remove()
+}
