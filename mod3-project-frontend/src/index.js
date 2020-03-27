@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newUsersDiv = document.getElementById('users_form')
     const newUserForm = document.getElementById('activities_form')
     const allUsersUrl = `http://localhost:3000/users`
+
+    let deleteUserButton = document.getElementById('user_button')
     
     // console.log(input)
 
@@ -126,15 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function renderNewUser(user){
-        console.log(user)
+        // console.log(user)
         div2.innerHTML += `
-        <div class="user_card">
+        <div class="user_card" id="user_card">
             <h3 id="user_name">${user.data.attributes.name}</h3>
             <div class="user_attr">
                 <p>Age: ${user.data.attributes.age}</p>
                 <p>Gender: ${user.data.attributes.gender}</p>
             </div>
         </div>
+        <button onClick = "deleteUser() name="user_button" id="user_button">Delete this user</button>
     `
     }
 
@@ -149,7 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-
+    function deleteUser(){
+        
+    }
 
 
 
@@ -175,46 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
         greetDiv.append(h1)
 
 
-       
 
-            
-               
-
-        
-        
-        
-
-
-          
-
-
-                
-                
-
-           
-        
-        
- 
-
-
-
-
-                        
-                        
-                       
-
-                  
-                        
-
-                    
-
-
-            
-    
     });
 
 
-    // Shows users
+   
 
 
 
