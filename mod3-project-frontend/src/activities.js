@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // post location to activity so activity can access the location
+    // skip this post for user
     function postLocationToActivity(activity_data){
         fetch(allLocationsUrl, {
             method: 'POST',
@@ -105,19 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    // post user to activity to activity can access the location
-    // function postNameToActivity(activity_data){
-    //     fetch(allUsersUrl, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             name
-    //         })
-    //     })
-    // }
 
     // post activity
     function postActivity(activity_data, location) {
