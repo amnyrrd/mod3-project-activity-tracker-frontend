@@ -1,22 +1,22 @@
 document.addEventListener('DOMContentLoaded', () => {
     const allActivitiesUrl = `http://localhost:3000/activities`
     const allLocationsUrl = `http://localhost:3000/locations`
+    const allUsersUrl = 'http://localhost:3000/users'
     const activitiesDiv = document.getElementById("activities")
     const newActivityButton = document.createElement('button')
     const activitiesButton = document.getElementsByClassName('activities_button')[0]
     const newActivityDiv = document.getElementById('activities_form')
     const newActivityForm = document.getElementById('activities_form')
+    // const activityCard = document.getElementsByClassName('activity_card')
+    let deleteActivityButton = document.getElementById('delete_button')
     let activityForm;
 
-
-    console.log(activitiesDiv);
     // fetch activities
     fetch(allActivitiesUrl)
     .then(resp => resp.json())
     .then(actData => renderAllActivities(actData))
 
     function renderAllActivities(activities) {
-
         activitiesDiv.innerHTML = activities.data
             .map(activity => renderActivity(activity))
             .join("");
@@ -25,15 +25,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderActivity(activity) {
-        // console.log(activities.data)
         return `
-            <div class="activity_card">
+            <div class="activity_card" id="activity_card">
                 <h3 id="activity_name">${activity.attributes.name}</h3>
                 <div class="activity_attr">
                     <p>Expected Duration: ${activity.attributes.duration}</p>
                     <p>Description: ${activity.attributes.description}</p>
                 </div>
             </div>
+            <button onClick = "deleteActivity() name="delete_button" id="delete_button">Delete this activity</button>
         `
     }
 
@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    
     // post activity
     function postActivity(activity_data, location) {
         console.log(activity_data, location)
@@ -132,18 +131,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderNewActivity(activity, location){
-        // console.log(activity)
+        //<p>User ID:${activity.data.attributes.user_id}</p>
+        //<p>Location: ${location.data.attributes.name}</p>
         activitiesDiv.innerHTML += `
-        <div class="activity_card">
+        <div class="activity_card" id="activity_card>
             <h3 id="activity_name">${activity.data.attributes.name}</h3>
             <div class="activity_attr">
                 <p>Expected Duration: ${activity.data.attributes.duration}</p>
                 <p>Description: ${activity.data.attributes.description}</p>
-                <p>User ID:${activity.data.attributes.user_id}</p>
-                <p>Location: ${location.data.attributes.name}</p>
             </div>
         </div>
-    `
+        <button onClick = "deleteActivity() name="delete_button" id="delete_button">Delete this activity</button>
+        `
     }
     function activityFormListener(){
         activityForm.addEventListener('submit', function(e){
@@ -152,6 +151,10 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleActivityForm()
             showActivitiesDiv()
         })
+    }
+
+    function deleteActivity(){
+        
     }
 });
 
