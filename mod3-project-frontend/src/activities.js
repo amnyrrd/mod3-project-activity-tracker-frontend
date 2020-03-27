@@ -1,14 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
     const allActivitiesUrl = `http://localhost:3000/activities`
     const allLocationsUrl = `http://localhost:3000/locations`
-    const allUsersUrl = 'http://localhost:3000/users'
     const activitiesDiv = document.getElementById("activities")
     const newActivityButton = document.createElement('button')
     const activitiesButton = document.getElementsByClassName('activities_button')[0]
     const newActivityDiv = document.getElementById('activities_form')
     const newActivityForm = document.getElementById('activities_form')
     const activityCard = document.getElementById('activity_card')
-    let deleteActivityButton = document.getElementById('delete_button')
+    let deleteActivityButton = document.getElementsByClassName('delete_button')
     let activityForm;
 
     // fetch activities
@@ -88,6 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // post location to activity so activity can access the location
+    // skip this post for user
     function postLocationToActivity(activity_data){
         fetch(allLocationsUrl, {
             method: 'POST',
@@ -104,20 +104,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return postActivity(activity_data, location_data)
         })
     }
-
-    // post user to activity to activity can access the location
-    // function postNameToActivity(activity_data){
-    //     fetch(allUsersUrl, {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //             'Accept': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             name
-    //         })
-    //     })
-    // }
 
     // post activity
     function postActivity(activity_data, location) {
@@ -166,7 +152,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function deleteActivity(){
-        activityCard.parentNode.removeChild()
+        activitiesDiv.parentNode.removeChild(activityCard)
     }
+    console.log(deleteActivityButton)
+    // deleteActivityButton.addEventListener('click', function(e){
+    //     deleteActivity()
+    // })
 });
 
