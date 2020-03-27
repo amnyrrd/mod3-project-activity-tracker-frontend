@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const newUsersDiv = document.getElementById('users_form')
     const newUserForm = document.getElementById('activities_form')
     const allUsersUrl = `http://localhost:3000/users`
+
+    let deleteUserButton = document.getElementById('user_button')
     
     // console.log(input)
 
@@ -78,6 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <form class="user_form" id="user_form" style="">
         <h3>Upload a new user</h3>
         <input type="text" name="name" value="" placeholder="Enter your first name" class="input-text">
+        <input type="text" name="age" value="" placeholder="Enter your age" class="input-text">
+        <input type="text" name="gender" value="" placeholder="Enter your gender" class="input-text">
         <input type="submit" name="submit" value="Submit User" id="submit_new_user">
       </form>
       `
@@ -101,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // post user
     function postUser(user_data) {
+        console.log("Hello Newman")
         console.log(user_data)
         fetch(allUsersUrl, {
             method: 'POST',
@@ -123,14 +128,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     function renderNewUser(user){
-        console.log(user)
+        // console.log(user)
         div2.innerHTML += `
-        <div class="user_card">
+        <div class="user_card" id="user_card">
             <h3 id="user_name">${user.data.attributes.name}</h3>
             <div class="user_attr">
-                <p>Expected Duration: ${user.data.attributes.age}</p>
+                <p>Age: ${user.data.attributes.age}</p>
+                <p>Gender: ${user.data.attributes.gender}</p>
             </div>
         </div>
+        <button onClick = "deleteUser() name="user_button" id="user_button">Delete this user</button>
     `
     }
 
@@ -138,11 +145,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function userFormListener(){
         userForm.addEventListener('submit', function(e){
             e.preventDefault()
-            // postLocationToActivity(e.target)
+            postUser(e.target)
             toggleUserForm()
             showUsersDiv()
         })
     }
+
+
+    function deleteUser(){
+        
+    }
+
+
 
 
     form.addEventListener('submit', function (e) {
@@ -166,46 +180,11 @@ document.addEventListener('DOMContentLoaded', () => {
         greetDiv.append(h1)
 
 
-       
 
-            
-               
-
-        
-        
-        
-
-
-          
-
-
-                
-                
-
-           
-        
-        
- 
-
-
-
-
-                        
-                        
-                       
-
-                  
-                        
-
-                    
-
-
-            
-    
     });
 
 
-    // Shows users
+   
 
 
 
