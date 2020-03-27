@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
+
     // post activity
     function postActivity(activity_data, location) {
         console.log(activity_data, location)
